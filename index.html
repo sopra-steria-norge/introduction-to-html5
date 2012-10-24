@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Petit+Formal+Script' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/jquery.easy-pie-chart.css">
+		
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.easy-pie-chart.js"></script>
+		<script type="text/javascript" src="js/three.js"></script>
+		<script type="text/javascript" src="js/bomb.js"></script>
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section class="background-image-steria">
+					<h1>En innføring i HTML5</h1>
+					<h3>Kim A. Martinsen, <span style="color: orange;">Steria AS</span></h3>
+				</section>
+				
+				<section data-state="white" class="background-image-w3c">
+					<h2>1998: Stanset utviklingen av <span style="color: green;">HTML 4.01</span></h2>
+					<h2>2000: Lanserte <span style="color: red;">XHTML 1.0</span></h2>
+					<i>Deler XHTML i to: XHTML Transitional og XHTML Strict</i>
+					<aside class="notes">
+						Det meste står på foilen
+					</aside>
+				</section>
+				
+				<section>
+					<h2>Web Hypertext Application Technology Working Group (<span style="color: pink;">WHAT WG</span>)</h2>
+					<p>WHATWG ble grunnlagt av Apple, Mozilla Foundation, og Opera Software i 2004, etter en W3C workshop. De var bekymret
+					for retningen W3C gikk med XHTML.</p>
+				</section>
+				
+				<section>
+					<p class="center"><span style="color: green;">HTML5</span> er hovedsaklig et buzzword som refererer til moderne web teknologier</p>
+				</section>
+				
+				<section>
+					<h1>Del 1: Feilhåntering</h2>
+					<progress max="100" value="5" />
+				</section>
+
+				<section data-state="customevent">
+				<h2>Litt fakta før vi fortsetter..</h2> <br>
+					<p>Et latterlig stort antall nettsider inneholder <span class="red">feil</span> i markupen.
+					Veldig få nettsider er utviklet av profesjonelle utviklere</p>
+					<div class="chart" data-percent="90">90%</div>
+					<small class="label">Nettsider som inneholder feil. Kilde: Ingen (..men sikkert close enough)</small>
+				</section>
+
+				<section>
+					<pre><code contenteditable class="xml">					
+&lthtml&gt
+  &lthead&gt
+    &lttitle&gtPwning the web&lt/title&gt
+  &lt/head&gt
+
+  &ltbody&gt
+    &lth1&gtSweeeet hjemmeside&lt/h1&gt
+  &lt/body&gt
+
+&lt/html&gt
+&ltsmall&gtCopyright awesome-developer2012&lt/small&gt //iiiiiiikk 
+					</code></pre>					
+				</section>
+
+				<section>
+					<h2>Feilhåndtering i HTML 4</h2>
+					<pre><code>					
+//Support for really broken html. We never close the body tag, 
+//since some stupid web pages close it before the actual end of the doc.
+//Let's rely on the end() call to close things.
+
+if(t-&gttagName == htmlTag || t-&gttagName == bodyTag )
+	return;
+					</code></pre>
+					<small>Utdrag fra kildekoden til Webkit som bla. brukes i Safari og Chrome</small>
+				</section>
+
+				<section data-state="alert">
+					<h2>Feilhåndtering i XHTML 1.0 Strict</h2>
+				    <img src="img/illformed.jpg" width="80%">
+				</section>
+
+				<section data-state="alert">
+				    <h2>XHTML 1.0 Strict</h2>
+					<pre><code>
+&ltDOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml&gt
+
+ &lt;head&gt
+   &lt;title&gtMin nettside med syntaksfeil&lt;/title&gt
+   &ltmeta http-equiv="content-type" 
+		content="text/html;charset=utf-8"&gt
+ &lt;/head&gt
+ 
+ &lt;body&gt
+  &lt;ul&gt
+   &lt;li&gtList item one&lt;/li&gt
+   &lt;li&gtList item two&lt;/ul&gt
+  &lt;/li&gt
+ &lt;/body&gt
+ 
+&lt;/html&gt
+					</code></pre>		
+				</section>
+
+				<section>
+					<h2>Feilhåndtering i HTML 5</h2>
+					<q>Recognizing that many authors produce non-conformant documents and that apps need to deal with such documents, 
+					HTML5 precisely specifies handling of markup errors and other classes of errors — so that such errors will be handled in an interoperable way across 
+					UAs/browsers</q>
+				</section>
+				
+				<section>
+					<h1>Del 2: Semantikk</h2>
+					<progress max="100" value="20" />
+				</section>
+
+				<section>
+					<h2>Semantikk</h2>
+						<p>
+						Elementer definerer meningen av innholdet så godt som mulig, og ikke hvordan det presenteres.
+						Nye elementer er kommet til i spesifikasjonen.
+						</p>
+				</section>
+				
+				<section>
+					<h2>&ltdiv&gt i HTML4</h2>
+						<pre><code>
+&ltdiv id="header"&gt  
+  &lth1&gtI can the Interwebs&lt/h1&gt
+    &lt!-- Slogans ftw i headeren --&gt
+&lt/div&gt
+&ltdiv id="nav"&gt  
+   &lt!-- Naviger i min awesome meny --&gt
+&lt/div&gt
+&ltdiv id="article"&gt
+  &ltdiv class="section"&gt
+    &lt!-- Blogger ftw --&gt
+  &lt/div&gt
+  &ltdiv class="section"&gt
+    &lt!-- Kan bli for lite blogging --&gt
+  &lt/div&gt
+&lt/div&gt
+
+&ltdiv id="footer"&gt
+  &lt!-- Copyright: You wouldnt steal a car.. --&gt
+&lt/div&gt
+
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>Semantikk i HTML5</h2>
+						<pre><code>
+&ltheader&gt  
+  &lth1&gtI can the Interwebs&lt/h1&gt
+    &lt!-- Slogans ftw i headeren --&gt
+&lt/header&gt
+&ltnav&gt  
+   &lt!-- Naviger i min awesome meny --&gt
+&lt/nav&gt
+&ltarticle&gt
+  &ltsection&gt
+    &lt!-- Blogger ftw --&gt
+  &lt/section&gt
+  &ltsection&gt
+    &lt!-- Kan bli for lite blogging --&gt
+  &lt/section&gt  
+&lt/article&gt
+
+&ltfooter&gt
+  &lt!-- Copyright: You wouldnt steal a car.. --&gt
+&lt/footer&gt
+
+					</code></pre>
+				</section>
+				
+				<section>
+					<img src="img/new_elements.jpg">
+				</section>
+				
+				<section>
+					<h1>Del 3: Web Forms</h2>
+					<progress max="100" value="40" />
+				</section>
+				
+				<section>
+					<h2>HTML5 forms</h2>
+					<code><pre>
+&ltform&gt 
+  &ltinput type="text" name="name" required placeholder="Navn"&gt
+  &ltlabel for="name"&gtNavn&lt/label&gt
+
+  &ltinput type="email" name="email" required placeholder="email@me.com"&gt
+  &ltlabel for="email"&gtEpost&lt/label&gt 
+	
+  &ltinput type="url" name="website" placeholder="www.me.com"&gt
+  &ltlabel for="website"&gtNettside&lt/label&gt 
+
+  &ltinput type="number" name="number" min="0" max="10" 
+	step="2" required placeholder="Tall &lt 10"&gt
+  &ltlabel for="number"&gtTall&lt/label&gt 
+
+  &ltinput type="range" name="range" min="0" max="10" step="2"&gt
+  &ltlabel for="range"&gtRange&lt/label&gt 
+
+  &ltinput type="submit" value="Registrer"&gt
+&lt/form&gt
+					</code></pre>
+				</section> 
+				
+				<section>
+					<div class="formheader" method="post">Registrer deg</div>
+						<form id="localStorageForm" > 
+						    <p class="name">
+								<input type="text" name="name" class="stored" required placeholder="Navn" />
+								<label for="name">Navn</label>
+							</p>	
+							<p class="email">
+								<input type="email" name="email" class="stored" required placeholder="email@me.com" />
+								<label for="email">Epost</label> 
+							</p>
+							<p class="website">
+								<input type="url" name="website" class="stored" placeholder="www.me.com" />
+								<label for="website">Nettside</label> 
+							</p>
+							<p class="number">
+								<input type="number" name="number" min="0" max="10" step="2" required placeholder="Tall < 10">
+								<label for="number">Tall</label> 
+							</p>
+							<p class="range">
+								<input type="range" name="range" min="0" max="10" step="2" />
+								<label for="range">Range</label> 
+							</p>
+							<p class="submit">
+								<input type="submit" value="Registrer" />
+							</p>	
+						</form>
+				</section>
+				
+				<section>
+					<h2>Padda <span style="color:green;">skjønner</span> forms!</h2>
+					<img src="img/figure-mobile-safari-keyboards.png">
+				</section>
+				
+				<section>
+					<h1>Del 4: API</h2>
+					<progress max="100" value="60" />
+				</section>
+				
+				<section>
+					<h2>Video</h2>
+					<code><pre>
+&ltvideo width="640" height="480" controls &gt
+  &ltsource src="video/movie.mp4" type="video/mp4" /&gt
+  &ltsource src="video/movie.ogg" type="video/ogg" /&gt
+  &ltsource src="video/movie.webm" type="video/webm" /&gt
+  &ltobject data="video/movie.mp4" width="320" height="240"&gt
+    &ltembed src="video/movie.swf" width="320" height="240" /&gt
+  &lt/object&gt 
+&lt/video&gt
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>Video</h2>
+					<video width="640" height="480" controls>
+					 	 <source src="video/movie.ogv" type="video/ogg" />
+ 						 <source src="video/movie.mp4" type="video/mp4" />
+						 <source src="video/movie.webm" type="video/webm" />
+					</video>
+				</section>
+				
+				<section>
+					<h2>Audio</h2>
+					<code><pre>
+&ltaudio&gt
+  &ltsource src="horse.ogg" type="audio/ogg" /&gt
+  &ltsource src="horse.mp3" type="audio/mpeg" /&gt
+  Your browser does not support the audio element.
+&lt/audio&gt
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>Canvas</h2>
+					<button id="videoincanvas"onclick="sourcevid.play();">Start video i bakgrunnen</button>
+					<button onclick="sourcevid.pause();">Stopp video i bakgrunnen</button>
+					<button onclick="init();">Kopier video inn i canvas</button>
+					<canvas id="output" width="800" height="600" onmousedown="dropBomb(event, this)"></canvas>
+
+					<div style="display:none">
+						<video id="sourcevid" loop>
+							<source src="video/movie.ogv" type="video/ogg" />
+						</video>
+						<canvas id="sourcecopy" width="640" height="480"></canvas>
+					</div>
+				</section>
+				<!--<a href="http://learningthreejs.com/data/2012-05-04-tquery-md2character-a-plugin-for-doom-characters/examples/">Mer canvas</a>-->
+				<section>
+					<h2>GeoLocation</h2>
+					<code><pre>
+&ltscript&gt
+  function getLocation(){
+    if (navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else{
+	  x.innerHTML="Geolocation is not supported by this browser.";
+	}
+  }
+  function showPosition(position){
+    console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude; 
+  }
+&lt/script&gt
+					</code></pre>
+					<a href="http://html5demos.com/geo">Eksempel på geolocation</a href>
+				</section>
+				
+				<section data-state="storing">
+					<h2>HTML5 web storage</h2>
+					<p>LocalStorage og SessionStorage er sikrere og raskere enn cookies. Lagrer data på klienten</p>
+					<code><pre>
+localStorage.skole = 'NTNU'
+localStorage.event = 'itDagene'					
+					</code></pre>
+					<input type="button" value="Hvem er jeg?" onClick="showMyData();">
+					<br><br>
+					<p id="mystoredtext"></p>
+				</section>
+				
+				<section>
+					<h1>Del 4: Hvordan komme igang med HTML5?</h2>
+					<progress max="100" value="80" />
+				</section>
+				
+				<section>
+					<h2>&lt!DOCTYPE html&gt</h2>
+					<code><pre>
+&lt!DOCTYPE html&gt
+  &lthtml&gt
+    &lthead&gt
+      &lttitle&gtMin HTML5 nettside&lt/title&gt
+    &lt/head&gt
+
+    &ltbody&gt
+     &lt -- Din nettside her -- &gt
+    &lt/body&gt
+  &lt/html&gt
+					</code></pre>
+				</section>
+				
+				<section data-state="white" class="background-image-modernizr">
+					<p>Funksjoner i HTML5 støttes enda ikke fullt ut i alle nettlesere. Hvis man skal bruke funksjoner fra HTML5 bør man sjekke hva nettleseren støtter.</p>
+				</section>
+				
+				<section>
+					<h2>Modernizr</h2>
+					<code><pre>
+if (Modernizr.localstorage) {
+  // window.localStorage is available!
+} else {
+  // no native support for HTML5 storage :(
+}	
+if (Modernizr.geolocation) {
+  // navigator.geolocation is available!
+} else {
+  // no native support for HTML5 storage :(
+}				
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>Oppsummering</h2>
+					<ul>
+						<li>Feilhåndtering</li>
+						<li>Semantikk</li>
+						<li>Web Forms</li>
+						<li>API</li>
+						<li>Komme igang</li>
+					</ul>	
+				</section>
+				
+				<section>
+					<h1>Spørsmål?</h1>
+				</section>
+				
+				<section class="background-image-steria">
+					<h1>Takk for meg</h1>
+					<h3 style="color:green;">Slidene er tilgjengelig på github.com</h3>
+				</section>
+				
+			</div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			function showMyData() {
+			  	$('#mystoredtext').html(
+				'<p>Du påstår at du heter ' + localStorage.name + ' </span><br>'+
+				'og kan kontaktes på ' + localStorage.email + ' til alle døgnets tider!</p>');
+			};
+
+			$('.stored').keyup(function () {
+				localStorage[$(this).attr('name')] = $(this).val();
+			});	
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', condition: function() { return !!document.body.classList; } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } }
+				]
+			});
+			
+			Reveal.addEventListener( 'customevent', function() {
+    			$('.chart').easyPieChart({
+       		 		lineCap: 'butt',
+                    lineWidth: 15,
+                    animate: 3000,
+                    barColor: function(percent) {
+                        percent /= 100;
+                        return "rgb(" + Math.round(255 * percent) + ", " + Math.round(255 * (1-percent)) + ", 0)";
+                    },
+                    trackColor: '#666',
+                    scaleColor: false,
+    			});
+			});
+			
+			Reveal.addEventListener( 'storing', function () {
+				
+			});
+			
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,111 @@
+/**
+ * Addons for the default theme for reveal.js presentations.
+ * 
+ */
+
+ progress
+{ 
+	margin-top: 100px;
+	border: 1px solid #1C1C1C;
+	background-color: red;
+	color: #000000;
+--	-webkit-box-shadow: 0 0 1px #666, inset 0 1px 1px #222;
+--	-moz-box-shadow: 0 0 1px #666, inset 0 1px 1px #222;
+--	-o-box-shadow: 0 0 1px #666, inset 0 1px 1px #222;
+--	box-shadow: 0 0 1px #666, inset 0 1px 1px #222;
+--	background-image: -webkit-linear-gradient(#323232, #2E2E2E 50%, #323232);
+--	background-image: -moz-linear-gradient(#323232, #2E2E2E 50%, #323232);
+--	background-image: -o-linear-gradient(#323232, #2E2E2E 50%, #323232);
+}
+ 
+.center {
+	margin-top: 200px;
+}
+ 
+ code {
+	border-radius: 10px;
+ }
+ 
+ .white .state-background {
+	background: rgba( 255, 255, 255, 1 );
+	
+}
+
+div .chart {
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.background-image-w3c {
+	background-image:url('../img/w3c-logo.jpg');
+	background-repeat:no-repeat;
+	color: #111;
+	background-position:center;
+}
+
+.background-image-steria {
+	background-image:url('../img/steria_logo.png');
+	background-repeat:no-repeat;
+	color: #111;
+	background-position:center;
+}
+
+.background-image-modernizr {
+	background-image:url('../img/modernizr.png');
+	background-repeat:no-repeat;
+	background-size:100% ;
+	color: #111;
+	background-position:center;
+}
+
+.background-image-w3c h2{
+	color: #111;
+}
+
+.background-image-w3c p{
+	position:relative;
+	top:350px;
+	
+}
+
+#previewhtml {
+  display: block; 
+  border-radius: 10px;
+  padding: 0.5em;
+  background: #FFFFFF;
+  color: #DCDCDC;
+  overflow-x: auto;
+}
+
+/** FORM **/
+div .formheader{
+	font-family: 'Nothing You Could Do', cursive;
+	font-size: 80px;
+	margin: 40px
+}
+label {
+	display: block;
+	font: normal 15px/100% Verdana, Tahoma, sans-serif;
+}
+input, textarea {  
+    padding: 9px;  
+    border: solid 1px #E5E5E5;  
+    outline: 0;  
+    font: normal 15px/100% Verdana, Tahoma, sans-serif;  
+    width: 400px;  
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));  
+  
+    } 
+	
+.submit input {  
+    width: 400px;  
+    padding: 9px 15px;  
+    background: #617798;  
+    border: 0;  
+    font-size: 14px;  
+    color: #FFFFFF;  
+    -moz-border-radius: 5px;  
+    -webkit-border-radius: 5px;  
+    }  
