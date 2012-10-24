@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Introduction to HTML5</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -95,7 +95,7 @@
   &lt/body&gt
 
 &lt/html&gt
-&ltsmall&gtCopyright awesome-developer2012&lt/small&gt //iiiiiiikk 
+&ltsmall&gtCopyright Mr./Mrs. Developer&lt/small&gt //iiiiiiikk 
 					</code></pre>					
 				</section>
 
@@ -359,13 +359,8 @@ if(t-&gttagName == htmlTag || t-&gttagName == bodyTag )
 				<section data-state="storing">
 					<h2>HTML5 web storage</h2>
 					<p>LocalStorage og SessionStorage er sikrere og raskere enn cookies. Lagrer data på klienten</p>
-					<code><pre>
-localStorage.skole = 'NTNU'
-localStorage.event = 'itDagene'					
-					</code></pre>
-					<input type="button" value="Hvem er jeg?" onClick="showMyData();">
-					<br><br>
-					<p id="mystoredtext"></p>
+					<br>
+					<p id="mystoredform"></p>
 				</section>
 				
 				<section>
@@ -426,7 +421,7 @@ if (Modernizr.geolocation) {
 				
 				<section class="background-image-steria">
 					<h1>Takk for meg</h1>
-					<h3 style="color:green;">Slidene er tilgjengelig på github.com</h3>
+					<p style="color:orange;">kam@steria.no || github.com/steria/introduction-to-html5</p>
 				</section>
 				
 			</div>
@@ -437,12 +432,6 @@ if (Modernizr.geolocation) {
 		<script src="js/reveal.min.js"></script>
 
 		<script>
-			function showMyData() {
-			  	$('#mystoredtext').html(
-				'<p>Du påstår at du heter ' + localStorage.name + ' </span><br>'+
-				'og kan kontaktes på ' + localStorage.email + ' til alle døgnets tider!</p>');
-			};
-
 			$('.stored').keyup(function () {
 				localStorage[$(this).attr('name')] = $(this).val();
 			});	
@@ -484,7 +473,7 @@ if (Modernizr.geolocation) {
 			});
 			
 			Reveal.addEventListener( 'storing', function () {
-				
+				$('#mystoredform').html('<code><pre>localStorage.name = \'' + localStorage.name + '\' <br>localStorage.email = \'' + localStorage.email + '\'<br>localStorage.website = \'' + localStorage.website + '\'</code></pre>');
 			});
 			
 		</script>
